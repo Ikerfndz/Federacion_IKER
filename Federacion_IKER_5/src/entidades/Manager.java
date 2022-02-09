@@ -1,5 +1,11 @@
 package entidades;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.time.LocalDate;
 import java.util.Scanner;
 
@@ -13,7 +19,8 @@ public class Manager {
 	private String direccion;
 
 	private DatosPersona persona;
-
+	
+	
 	public Manager(long id, String telefono, String direccion) {
 		super();
 		this.id = id;
@@ -29,7 +36,50 @@ public class Manager {
 		this.direccion = direccion;
 		this.persona = dp;
 	}
+	
+	
+	public Manager() {
+		// TODO Auto-generated constructor stub
+	}
 
+	// EJERCICIO 3 EXAMEN 6
+	public String data() {
+		String ret = "";
+		ret = persona.getId() + "|" + persona.getNombre()+ "|" + persona.getFechaNac() + "|" + persona.getTelefono() + "|" + this.telefono + "|" + this.direccion;
+		return ret;
+	}
+
+	
+	public static void exportarManager () {
+	
+	File fOut = new File("managers.txt");
+	FileWriter fw = null;
+	BufferedWriter bw = null;
+	String data;
+
+	try {
+		fw = new FileWriter(fOut);
+		bw = new BufferedWriter(fw);
+		for (int i = 0; i< Datos.MANAGERS.length; i++){
+			Manager m = new Manager();
+			m= Datos.MANAGERS[i];
+		bw.write(m.data() + "\n");
+		bw.close();
+
+		}
+	} catch (IOException e) {
+		{
+			e.printStackTrace();
+		}
+
+	} finally {
+
+	}
+
+	System.out.println(" ");
+	
+	}
+	
 	public static Manager nuevoManager() {
 		Manager ret = null;
 		Scanner in;

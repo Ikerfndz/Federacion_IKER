@@ -1,5 +1,14 @@
 package principal;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.time.LocalDate;
 import java.util.Scanner;
 
 import entidades.*;
@@ -10,10 +19,10 @@ public class Principal4 {
 	public static void main(String[] args) {
 		Datos.cerrarResultados();
 		System.out.println("INICIO");
-		
+
 		Scanner in;
 		int elecc = -1;
-		Rol rol; //Examen 4 Ejercicio 3A
+		Rol rol; // Examen 4 Ejercicio 3A
 		boolean correcto = false;
 		while (true) {
 			System.out.println("Bienvenido al programa de gestiÃ³n de la FEDERACIÃ“N DEPORTIVA:");
@@ -40,7 +49,7 @@ public class Principal4 {
 			} while (!correcto);
 			rol = Rol.values()[elecc - 1];
 
-			Credenciales cred; //Examen 4 Ejericicio 3B
+			Credenciales cred; // Examen 4 Ejericicio 3B
 			boolean login = false;
 			switch (rol.ordinal()) {
 			case 0: // Rol.DIRECTIVA;
@@ -70,7 +79,7 @@ public class Principal4 {
 			mostrarMenu(rol);
 		}
 
-	} //Final del main
+	} // Final del main
 
 	// Examen 3 Ejercicio 2 - Examen 4 Ejercicio 3C
 	private static void mostrarMenu(Rol rol) {
@@ -116,15 +125,11 @@ public class Principal4 {
 				if (elecc >= 0 && elecc <= 2) {
 					valido = true;
 					mostrarSubmenuAtleta(elecc);
-					
-					
+
 					Atleta nuevo = Atleta.nuevoAtleta();
-					
+
 					System.out.println(nuevo);
-					
-					
-					
-					
+
 				} else
 					System.out.println("Â¡Valor seleccionado no vÃ¡lido!\n");
 			} while (!valido || elecc != 0);
@@ -219,7 +224,7 @@ public class Principal4 {
 		boolean valido = false;
 		System.out.println("\nGESTIÃ“N de MEDALLAS.");
 		switch (elecc) {
-		case 1: //opciÃ³n 1.1.1
+		case 1: // opciÃ³n 1.1.1
 			do {
 				System.out.println("Ha seleccionado Nueva MEDALLA.");
 				System.out.println("Seleccione 1 para ORO, 2 para PLATA o 3 para BRONCE.");
@@ -257,10 +262,10 @@ public class Principal4 {
 		int subelecc = -1;
 		boolean valido = false;
 		switch (elecc) {
-		case 1:  //opciÃ³n 2.1
+		case 1: // opciÃ³n 2.1
 			System.out.println("Ha seleccionado CONFORMAR EQUIPO.");
 			break;
-		case 2: //opciÃ³n 2.2
+		case 2: // opciÃ³n 2.2
 			System.out.println("Ha seleccionado INSCRIPCIÃ“N de EQUIPO en PRUEBA.");
 			break;
 		default:
@@ -273,10 +278,10 @@ public class Principal4 {
 		int subelecc = -1;
 		boolean valido = false;
 		switch (elecc) {
-		case 1: ////opciÃ³n 3.1
+		case 1: //// opciÃ³n 3.1
 			System.out.println("Ha seleccionado FEDERARSE (Nuevo ATLETA).");
 			break;
-		case 2: //opciÃ³n 3.2
+		case 2: // opciÃ³n 3.2
 			System.out.println("Ha seleccionado INSCRIPCIÃ“N de ATLETA en PRUEBA..");
 			break;
 		default:
@@ -289,12 +294,12 @@ public class Principal4 {
 		int subelecc = -1;
 		boolean valido = false;
 		switch (elecc) {
-		case 1: ////opciÃ³n 4.1
+		case 1: //// opciÃ³n 4.1
 			System.out.println("Ha seleccionado Nuevo COLEGIADO.");
 			Colegiado nuevo = Colegiado.nuevoColegiado();
 			System.out.println("Se ha creado correctamente el nuevo colegiado:" + nuevo);
 			break;
-		case 2: ////opciÃ³n 4.2
+		case 2: //// opciÃ³n 4.2
 			System.out.println("Ha seleccionado INTRODUCIR RESULTADOS de PRUEBA..");
 			break;
 		default:
@@ -335,44 +340,33 @@ public class Principal4 {
 	private static void mostrarMenuDirectiva() {
 		System.out.println("MenÃº de la DIRECTIVA.");
 		System.out.println("Seleccione una de las siguientes opciones:");
-		System.out.println("1. GestiÃ³n de medallas\n" 
-				+ "2. GestiÃ³n de competiciones y pruebas.\n"
-				+ "0. Volver");
+		System.out.println("1. GestiÃ³n de medallas\n" + "2. GestiÃ³n de competiciones y pruebas.\n" + "0. Volver");
 	}
 
 	private static void mostrarMenuManager() {
 		System.out.println("MenÃº para los MÃ�NAGERS.");
 		System.out.println("Seleccione una de las siguientes opciones:");
-		System.out.println("1. Conformar equipo\n" 
-				+ "2. Inscripcion de equipo en prueba.\n" 
-				+ "0. Volver");
+		System.out.println("1. Conformar equipo\n" + "2. Inscripcion de equipo en prueba.\n" + "0. Volver");
 	}
 
 	private static void mostrarMenuAtleta() {
 		System.out.println("MenÃº para los ATLETAS.");
 		System.out.println("Seleccione una de las siguientes opciones:");
-		System.out.println("1. Federarse (nuevo Atleta)\n" 
-				+ "2. Inscrcipcion de atleta en prueba.\n" 
-				+ "0. Volver");
+		System.out.println("1. Federarse (nuevo Atleta)\n" + "2. Inscrcipcion de atleta en prueba.\n" + "0. Volver");
 
 	}
 
 	private static void mostrarMenuColegiado() {
 		System.out.println("MenÃº para los COLEGIADOS.");
 		System.out.println("Seleccione una de las siguientes opciones:");
-		System.out.println("1. Nuevo Colegiado\n" 
-				+ "2. Introducir resultados de prueba.\n" 
-				+ "0. Volver");
+		System.out.println("1. Nuevo Colegiado\n" + "2. Introducir resultados de prueba.\n" + "0. Volver");
 	}
 
 	private static void mostrarMenuAdmin() {
 		System.out.println("MenÃº para los ADMINISTRADORES.");
 		System.out.println("Seleccione una de las siguientes opciones:");
-		System.out.println("1. GestiÃ³n de medallas, de competiciones y de pruebas\n" 
-				+ "2. GestiÃ³n de equipos.\n"
-				+ "3. GestiÃ³n de atletas.\n" 
-				+ "4. GestiÃ³n de arbitrajes y resultados.\n" 
-				+ "0. Volver");
+		System.out.println("1. GestiÃ³n de medallas, de competiciones y de pruebas\n" + "2. GestiÃ³n de equipos.\n"
+				+ "3. GestiÃ³n de atletas.\n" + "4. GestiÃ³n de arbitrajes y resultados.\n" + "0. Volver");
 	}
 
 	private static void mostrarMenuInvitado() {
@@ -381,9 +375,56 @@ public class Principal4 {
 		System.out.println("" + "0. Volver");
 	}
 
-	private static boolean login(Credenciales cred) {
-		// Por el momento siempre devolverÃ¡ true
-		return true;
+	
+	// EJERCICIO 1
+	
+	public static boolean login(Credenciales cred) {
+		boolean credCorrectas = false;
+		ObjectInputStream ois = null;
+		try {
+			File f = new File("credenciales.txt");
+			FileInputStream fi = new FileInputStream(f);
+			ois = new ObjectInputStream(fi);
+			while (true) {
+				Credenciales c = (Credenciales) ois.readObject();
+				if (cred.getUsuario() == c.getUsuario()) {
+					if (cred.getPassword() == c.getPassword()) {
+						credCorrectas = true;
+					}
+				}
+			}
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			System.out.println("error");
+		} finally {
+			try {
+				ois.close();
+				return credCorrectas;
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		return credCorrectas;
 	}
-
+	
+	public static void exportarJunior() {
+		try {
+			File f = new File ("juniors.dat");
+			FileOutputStream fo = new FileOutputStream(f);
+			ObjectOutputStream os = new ObjectOutputStream(fo);
+			
+			for (Atleta a : Datos.ATLETAS) {
+				DatosPersona dp = a.getPersona();
+				if(dp.getFechaNac().isAfter(LocalDate.of(2000, 1, 1))) {
+					os.writeObject(a);
+				}
+				os.close();
+			}
+		}catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}catch (IOException e) {
+			e.printStackTrace();
+		}finally {}
+	}
 }

@@ -202,10 +202,20 @@ public class Prueba {
 
 	@Override
 	public String toString() {
-		return "Prueba [id=" + id + ", nombre=" + nombre + ", fecha=" + fecha + ", individual=" + individual
-				+ ", lugar=" + lugar + ", arbitraje=" + Arrays.toString(arbitraje) + ", resultado=" + resultado
-				+ ", participantes=" + Arrays.toString(participantes) + "]";
+		String ret ="";
+		ret +=this.id   + ". "   + this.nombre  + "(" + this.getFecha() + ")" + " de tipo" + (this.isIndividual()?"individual":"colectivo") ;
+		if (this.hayEquipoArbitral()) {
+			ret += this.hayEquipoArbitral();
+		}
+		if (this.cerrada())	{
+			Resultado r = this.getResultado();
+			ret += "Primer puesto: " + this.getResultado().getPrimero() + ", con el dorsal " + ", por la calle"  ;
+		}
+		return ret;
+			
+		
 	}
+	
 
 	// Ejercicio 2, parte B
 	public static Prueba nuevaPrueba() {

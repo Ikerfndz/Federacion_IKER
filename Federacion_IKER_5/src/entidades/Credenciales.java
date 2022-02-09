@@ -1,9 +1,15 @@
 package entidades;
 
-public class Credenciales {
+import java.io.Serializable;
+
+public class Credenciales {  
+	
 	private String usuario;
 	private String password;
 
+	
+	
+	
 	public Credenciales() {
 	}
 
@@ -11,7 +17,11 @@ public class Credenciales {
 		super();
 		this.setUsuario(usuario);
 		this.setPassword(password);
+		
 	}
+	
+
+	
 
 	public String getUsuario() {
 		return usuario;
@@ -27,6 +37,12 @@ public class Credenciales {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public String data() {
+		String ret = "";
+		ret = this.usuario + "|" + this.password + "|" + Rol.values();
+		return ret;
 	}
 
 }
