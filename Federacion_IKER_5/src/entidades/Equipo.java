@@ -4,16 +4,18 @@ import java.time.format.DateTimeFormatter;
 
 public class Equipo extends Participante {
 	private long idEquipo;
+	public String nombre;
 	private int anioinscripcion;
 	private Manager manager;
 	private Atleta[] atletas;
 
-	public Equipo(long id, int anioinscripcion, Manager manager, Atleta[] atletas) {
+	public Equipo(long id, int anioinscripcion, Manager manager, Atleta[] atletas, String nombre) {
 		super();
 		this.idEquipo = id;
 		this.anioinscripcion = anioinscripcion;
 		this.manager = manager;
 		this.atletas = atletas;
+		this.nombre = nombre;
 	}
 
 	public Equipo(long idParticipante, Equipo e, int dorsal, char calle) {
@@ -62,6 +64,11 @@ public class Equipo extends Participante {
 		}
 		ret += "Valido durante el " + anioinscripcion;
 		return ret;
+	}
+
+	public String getNombre() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 

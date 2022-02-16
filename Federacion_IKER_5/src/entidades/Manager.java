@@ -19,7 +19,8 @@ public class Manager {
 	private String direccion;
 
 	private DatosPersona persona;
-	
+	public Equipo equipo;
+	public Atleta[] atleta;
 	
 	public Manager(long id, String telefono, String direccion) {
 		super();
@@ -156,8 +157,7 @@ public class Manager {
 	// documentacion, fechaNac y telefono2 de datos persona.
 	@Override
 	public String toString() {
-		return id + persona.getNombre() + "(" + persona.getNifnie() + ")" + "del año" + persona.getFechaNac() + "Tfno: "
-				+ telefono + "Tfno2: " + persona.getTelefono();
-	}
+		return "D/Dña. " + persona.getNombre() + "con NIF:NIE " + persona.getNifnie() + "nacido el " + persona.getFechaNac() + "representa al equipo" + equipo.nombre + "de id " + equipo.id + "durante el año "+ equipo.getAnioinscripcion() + ", el cual esta conformado por los siguientes atletas: " + '\t' + atleta.toString();
+		}
 
 }

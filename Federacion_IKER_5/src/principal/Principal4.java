@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -127,7 +128,7 @@ public class Principal4 {
 					mostrarSubmenuAtleta(elecc);
 
 					Atleta nuevo = Atleta.nuevoAtleta();
-
+					confirmacionDatos();
 					System.out.println(nuevo);
 
 				} else
@@ -283,6 +284,9 @@ public class Principal4 {
 			break;
 		case 2: // opciÃ³n 3.2
 			System.out.println("Ha seleccionado INSCRIPCIÃ“N de ATLETA en PRUEBA..");
+			
+			
+			
 			break;
 		default:
 		}
@@ -376,8 +380,7 @@ public class Principal4 {
 	}
 
 	
-	// EJERCICIO 1
-	
+
 	public static boolean login(Credenciales cred) {
 		boolean credCorrectas = false;
 		ObjectInputStream ois = null;
@@ -407,24 +410,82 @@ public class Principal4 {
 		}
 		return credCorrectas;
 	}
-	
+
 	public static void exportarJunior() {
+
 		try {
-			File f = new File ("juniors.dat");
+			File f = new File("juniors.dat");
 			FileOutputStream fo = new FileOutputStream(f);
 			ObjectOutputStream os = new ObjectOutputStream(fo);
-			
+
 			for (Atleta a : Datos.ATLETAS) {
 				DatosPersona dp = a.getPersona();
-				if(dp.getFechaNac().isAfter(LocalDate.of(2000, 1, 1))) {
+				if (dp.getFechaNac().isAfter(LocalDate.of(2000, 1, 1))) {
 					os.writeObject(a);
 				}
 				os.close();
 			}
-		}catch (FileNotFoundException e) {
+		} catch (FileNotFoundException e) {
 			e.printStackTrace();
-		}catch (IOException e) {
+		} catch (IOException e) {
 			e.printStackTrace();
-		}finally {}
+		} finally {
+		}
 	}
+
+	public static void rColegiados() {
+	try {
+		for (Colegiado c : Datos.COLEGIADOS) {
+			if (c.getCategoria() == Categoria.JUNIOR) {
+				String path = "colegiadoJunior.dat";
+				FileOutputStream fos = new FileOutputStream(path, false);
+				ObjectOutputStream escritor = new ObjectOutputStream(fos);
+				escritor.writeObject((Colegiado) c);
+				escritor.close();
+			}
+			if (c.getCategoria() == Categoria.SENIOR) {
+				String path = "colegiadoSenior.dat";
+				FileOutputStream fos = new FileOutputStream(path, false);
+				ObjectOutputStream escritor = new ObjectOutputStream(fos);
+				escritor.writeObject((Colegiado) c);
+				escritor.close();				}
+			if (c.getCategoria() == Categoria.ESPECIAL) {
+				String path = "colegiadoEspecial.dat";
+				FileOutputStream fos = new FileOutputStream(path, false);
+				ObjectOutputStream escritor = new ObjectOutputStream(fos);
+				escritor.writeObject((Colegiado) c);
+				escritor.close();
+				}
+			}
+		} catch (FileNotFoundException e) {
+			System.out.println("Excepcion FileNotFoundException" + e.getMessage());
+		} catch (IOException e) {
+			System.out.println("Excepcion IOException" + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("Exception" + e.getMessage());
+		}
+	}
+
+	public static void confirmacionDatos() {
+		int eleccion;
+		boolean eleccionValida = false;
+		Scanner in = new Scanner(System.in);
+		System.out.println("Introduce 1 para verificar que tus datos estan bien o pulse 2 si no lo estan: ");
+		eleccion = in.nextInt();
+		eleccionValida = (eleccion < 1 || eleccion > 2 ? false : true);
+		if (!eleccionValida) {
+			System.out.println("Opcion invalida! Vuelva a introducir su eleccion.");
+
+	} while (!eleccionValida);
+	System.out.println("Usted ha elegido la opcion: " + eleccion);
+
+	
+	
+	if (eleccion == 1) {
+		System.out.println("Ha seleccionado que es correcto");
+	}else if(eleccion ==2) {
+		System.out.println("Ha seleccionado que es incorrecto");
+		Atleta.nuevoAtleta();
+	}
+ }
 }
