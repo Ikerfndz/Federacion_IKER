@@ -265,6 +265,7 @@ public class Principal4 {
 		switch (elecc) {
 		case 1: // opciÃ³n 2.1
 			System.out.println("Ha seleccionado CONFORMAR EQUIPO.");
+			Equipo.nuevoEquipo();
 			break;
 		case 2: // opciÃ³n 2.2
 			System.out.println("Ha seleccionado INSCRIPCIÃ“N de EQUIPO en PRUEBA.");
@@ -284,7 +285,7 @@ public class Principal4 {
 			break;
 		case 2: // opciÃ³n 3.2
 			System.out.println("Ha seleccionado INSCRIPCIÃ“N de ATLETA en PRUEBA..");
-			
+			Atleta.nuevoAtleta();
 			
 			
 			break;

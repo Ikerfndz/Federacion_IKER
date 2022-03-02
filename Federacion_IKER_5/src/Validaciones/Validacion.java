@@ -97,4 +97,16 @@ public class Validacion {
 		ret = (val.checkNif(nif.mostrar()) > 0 ? true : false);
 		return ret;
 	}
+
+	public static boolean validarIdEquipo(long idEquipo) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public static boolean validarAnioInscripcion(int anioInscripcion) {
+		
+		if (anioInscripcion > 1980)
+		return false;
+	return true;
+	}
 }

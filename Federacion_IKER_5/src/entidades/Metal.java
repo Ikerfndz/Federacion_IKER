@@ -4,7 +4,7 @@ import java.time.LocalDate;
 
 //Ejercicio 5, parte A
 public abstract class Metal {
-	public abstract float maximaPurezaAlcanzada();
+	public abstract int maximaPurezaAlcanzada();
 	public abstract float[] cotasPurezaEfectiva();
 	
 	public LocalDate fecha;

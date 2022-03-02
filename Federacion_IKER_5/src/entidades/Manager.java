@@ -1,8 +1,11 @@
 package entidades;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
@@ -160,4 +163,38 @@ public class Manager {
 		return "D/Dña. " + persona.getNombre() + "con NIF:NIE " + persona.getNifnie() + "nacido el " + persona.getFechaNac() + "representa al equipo" + equipo.nombre + "de id " + equipo.id + "durante el año "+ equipo.getAnioinscripcion() + ", el cual esta conformado por los siguientes atletas: " + '\t' + atleta.toString();
 		}
 
+	public static void mapearNifNie() {
+		
+
+			System.out.println("Cargando de Manager.txt...");
+			File f = new File("Manager.txt");
+			FileReader fr = null;
+			BufferedReader br = null;
+
+			try {
+				fr = new FileReader(f);
+				br = new BufferedReader(fr);
+				String s;
+
+				for (int i = 0; i < 6; i++) {
+					s = (String) br.readLine();
+					System.out.println(s);
+				}
+
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			} finally {
+				try {
+					if (br != null)
+						br.close();
+					if (fr != null)
+						fr.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+	
 }
